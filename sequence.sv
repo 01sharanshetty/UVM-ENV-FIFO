@@ -26,4 +26,8 @@ class sequence_item extends uvm_sequence_item;
   `uvm_field_int(o_rddata, UVM_ALL_ON)
   `uvm_object_utils_end
 
-  
+  function new(string name="sequence_item");
+  super.new(name);
+  endfunction
+
+endclass
