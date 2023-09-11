@@ -33,3 +33,5 @@ interface f_interface(input clk, reset);
       modport output_monitor_mp (input clk, reset, clocking f_cb_output_monitor);
             
   endclocking
+
+    endinterface
