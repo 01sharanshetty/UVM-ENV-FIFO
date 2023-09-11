@@ -1,4 +1,4 @@
-class sequence_item extends uvm_sequence_item;
+class f_sequence_item extends uvm_sequence_item;
   
   //---------------------------------------
   //Input and Output data
