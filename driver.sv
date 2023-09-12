@@ -23,20 +23,44 @@ f_sequence_item fsi;
 
     forever begin
       seq_item_port.get_next_item(fsi);
-      if(fsi.i_wren == 1)
+      if((fsi.i_wren == 1) && (fsi.i_rden == 0))
         begin
           @(posedge vif.driver_mp.clk)
            vif.driver_mp.f_cb_driver.i_wren <= 'b1;
            vif.driver_mp.f_cb_driver.i_wrdata <= fsi.i_wrdata;
+          vif.driver_mp.f_cb_driver.i_rden <= 'b0;
           @(posedge vif.d_mp.clk)
            vif.driver_mp.f_cb_driver.i_wren <= 'b0;
+           vif.driver_mp.f_cb_driver.i_rden <= 'b0;
+          
         end
-      else if(fsi.i_rden == 1)
+      if((fsi.i_wren == 0) && (fsi.i_rden == 1))
         begin
          @(posedge vif.driver_mp.clk)
           vif.driver_mp.f_cb_driver.i_rden <= 'b1;
+          vif.driver_mp.f_cb_driver.i_wren <= 'b0;
           @(posedge vif.driver_mp.clk)
           vif.driver_mp.f_cb_driver.i_rden <= 'b0;
+          vif.driver_mp.f_cb_driver.i_wren <= 'b0;
+        end
+      if((fsi.i_wren == 1) && (fsi.i_rden == 1))
+        begin
+         @(posedge vif.driver_mp.clk)
+          vif.driver_mp.f_cb_driver.i_wren <= 'b1;
+          vif.driver_mp.f_cb_driver.i_wrdata <= fsi.i_wrdata;
+          vif.driver_mp.f_cb_driver.i_rden <= 'b1;
+          @(posedge vif.driver_mp.clk)
+          vif.driver_mp.f_cb_driver.i_wren <= 'b0;
+          vif.driver_mp.f_cb_driver.i_rden <= 'b0;
+        end
+      if((fsi.i_wren == 0) && (fsi.i_rden == 0))
+        begin
+         @(posedge vif.driver_mp.clk)
+          vif.driver_mp.f_cb_driver.i_rden <= 'b0;
+          vif.driver_mp.f_cb_driver.i_wren <= 'b0;
+          @(posedge vif.driver_mp.clk)
+          vif.driver_mp.f_cb_driver.i_rden <= 'b0;
+          vif.driver_mp.f_cb_driver.i_wren <= 'b0;
         end
       seq_item_port.item_done();
     end
