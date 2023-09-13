@@ -9,9 +9,9 @@ class f_input_agent extends uvm_agent;
   f_driver f_dri;
   f_input_monitor f_in_mon;
   
-  `uvm_component_utils(f_agent)
+  `uvm_component_utils(f_input_agent)
   
-  function new(string name = "f_agent", uvm_component parent);
+  function new(string name = "f_input_agent", uvm_component parent);
     super.new(name, parent);
   endfunction
 
