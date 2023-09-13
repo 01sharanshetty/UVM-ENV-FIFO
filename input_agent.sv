@@ -4,7 +4,7 @@
 `include "driver.sv"
 `include "input_monitor.sv"
 
-class f_agent extends uvm_agent;
+class f_input_agent extends uvm_agent;
   f_sequencer f_seqr;
   f_driver f_dri;
   f_input_monitor f_in_mon;
