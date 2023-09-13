@@ -23,7 +23,7 @@ class f_input_monitor extends uvm_monitor;
       @(posedge vif.input_monitor_mp.clk)
         
         if((vif.input_monitor_mp.f_cb_input_monitor.i_wren == 1) && (vif.input_monitor_mp.f_cb_input_monitor.i_rden == 0))begin
-          $display("\n Write is high and Read is low");
+          $display("\n[Input MONITOR] Write is high and Read is low");
         fsi.i_wrdata = vif.input_monitor_mp.f_cb_input_monitor.i_wrdata;
         fsi.i_wren = vif.input_monitor_mp.f_cb_input_monitor.i_wren;
         fsi.i_rden = vif.input_monitor_mp.f_cb_input_monitor.i_rden;
@@ -31,14 +31,14 @@ class f_input_monitor extends uvm_monitor;
       end
         
         if((vif.input_monitor_mp.f_cb_input_monitor.i_wren == 0) && (vif.input_monitor_mp.f_cb_input_monitor.i_rden == 1))begin
-        $display("\n Read is high and Write is low");
+        $display("\n[Input MONITOR] Read is high and Write is low");
         fsi.i_wrdata = vif.input_monitor_mp.f_cb_input_monitor.i_wrdata;
         fsi.i_wren = vif.input_monitor_mp.f_cb_input_monitor.i_wren;
         fsi.i_rden = vif.input_monitor_mp.f_cb_input_monitor.i_rden;
         item_got_port.write(fsi);
       end
         if((vif.input_monitor_mp.f_cb_input_monitor.i_wren == 1) && (vif.input_monitor_mp.f_cb_input_monitor.i_rden == 1))begin
-        $display("\n Read is high and Write is high");
+        $display("\n[Input MONITOR] Read is high and Write is high");
         fsi.i_rden = vif.input_monitor_mp.f_cb_input_monitor.i_rden;
         fsi.i_wrdata = vif.input_monitor_mp.f_cb_input_monitor.i_wrdata;
         fsi.i_wren = vif.input_monitor_mp.f_cb_input_monitor.i_wren;
@@ -46,7 +46,7 @@ class f_input_monitor extends uvm_monitor;
       end
 
         if((vif.input_monitor_mp.f_cb_input_monitor.i_wren == 0) && (vif.input_monitor_mp.f_cb_input_monitor.i_rden == 0))begin
-          $display("\n Read is low and Write is low");
+          $display("\n[Input MONITOR] Read is low and Write is low");
           
         fsi.i_rden = vif.input_monitor_mp.f_cb_input_monitor.i_rden;
         fsi.i_wrdata = vif.input_monitor_mp.f_cb_input_monitor.i_wrdata;
@@ -57,4 +57,4 @@ class f_input_monitor extends uvm_monitor;
   endtask
 
       
-  
+      endclass
