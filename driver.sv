@@ -1,3 +1,8 @@
+  parameter DATA_W = 128;
+  parameter DEPTH = 1024;
+  parameter UPP_TH = 4;
+  parameter LOW_TH = 2;
+
 class f_driver extends uvm_driver#(f_sequence_item);
 
 virtual f_interface vif;
