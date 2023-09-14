@@ -4,6 +4,12 @@ import uvm_pkg::*;
 `include "test.sv"
 
 module tb;
+    // Parameters for FIFO configuration
+  localparam DATA_W = 128;
+  localparam DEPTH = 1024;
+  localparam UPP_TH = 4;
+  localparam LOW_TH = 2;
+  
   bit clk;
   bit rstn;
   
@@ -18,7 +24,12 @@ module tb;
 
   f_interface tif(clk, reset);
 
-    SYN_FIFO dut(.clk(tif.clk),
+    SYN_FIFO #(
+    .DATA_W(DATA_W),
+    .DEPTH(DEPTH),
+    .UPP_TH(UPP_TH),
+    .LOW_TH(LOW_TH)
+    ) dut(.clk(tif.clk),
                  .rstn(tif.rstn),
                .i_wrdata(tif.i_wrdata),
                  .i_wren(tif.i_wren),
