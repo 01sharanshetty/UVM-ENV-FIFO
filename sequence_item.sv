@@ -1,3 +1,9 @@
+  parameter DATA_W = 128;
+  parameter DEPTH = 1024;
+  parameter UPP_TH = 4;
+  parameter LOW_TH = 2;
+
+
 class f_sequence_item extends uvm_sequence_item;
   
   //---------------------------------------
