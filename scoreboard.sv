@@ -1,3 +1,9 @@
+  parameter DATA_W = 128;
+  parameter DEPTH = 1024;
+  parameter UPP_TH = 4;
+  parameter LOW_TH = 2;
+
+
 class f_scoreboard extends uvm_scoreboard;
   uvm_analysis_imp#(f_sequence_item, f_scoreboard) item_got_export_in;
   uvm_analysis_imp#(f_sequence_item, f_scoreboard) item_got_export_out;
