@@ -5,7 +5,8 @@ class f_scoreboard extends uvm_scoreboard;
 
     function new(string name = "f_scoreboard", uvm_component parent);
     super.new(name, parent);
-    item_got_export = new("item_got_export", this);
+      item_got_export_in = new("item_got_export_in", this);
+      item_got_export_out = new("item_got_export_out", this);
   endfunction
   
   virtual function void build_phase(uvm_phase phase);
@@ -18,7 +19,7 @@ class f_scoreboard extends uvm_scoreboard;
   int r_o_full;
   int r_o_alm_empty;
   int r_o_empty;
-  
+  int temp;
     function void write(input f_sequence_item item_got);
       bit [127:0] examdata;
       
@@ -70,3 +71,23 @@ class f_scoreboard extends uvm_scoreboard;
 
           
       end
+
+      if((item_got.i_wren == 1) && (item_got.i_rden == 1)) begin
+        temp=c;
+        queue.push_back(item_got.i_wrdata);
+        c=c+1;
+        
+        if(queue.size() >= 'd1)begin
+           examdata = queue.pop_front();
+          c=c-1; end
+        if(c==temp)
+          $display("Simulataneous write and read test pass");
+        else 
+          $display("Simulataneous write and read test fail");
+
+      end
+
+
+    endfunction
+
+endclass
