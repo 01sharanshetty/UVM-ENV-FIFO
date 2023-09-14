@@ -1,4 +1,10 @@
 interface f_interface(input clk, reset);
+
+  parameter DATA_W = 128;
+  parameter DEPTH = 1024;
+  parameter UPP_TH = 4;
+  parameter LOW_TH = 2;
+  
   bit [DATA_W-1:0]i_wrdata;
   bit i_wren;
   bit i_rden;
